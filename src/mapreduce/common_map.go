@@ -71,7 +71,7 @@ func doMap(
 	}
 
 	for _,kv := range mapF(inFile,string(contents)){
-		enc := json.NewEncoder(files[ihash(kv.key) % nReduce])
+		enc := json.NewEncoder(files[ihash(kv.Key) % nReduce])
 		err := enc.Encode(&kv)
 		if err != nil{
 			log.Fatal(err)
@@ -79,7 +79,7 @@ func doMap(
 	}
 
 	for _,f := range files{
-		f.close()
+		f.Close()
 	}
 }
 
